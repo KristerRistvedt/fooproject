@@ -10,14 +10,14 @@ pipeline
                 }
                 stage('Build') {
                     steps {
-                        bat "mvn compile"
+                        sh "mvn compile"
                         
                     }
                     
                 }
                 stage('Test') {
                     steps {
-                        bat "mvn test"
+                        sh "mvn test"
                         
                     }
                     post {always {junit '**/TEST*.xml'
@@ -29,7 +29,7 @@ pipeline
                 }
                 stage('newman') {
                     steps {
-                        bat 'npm run RestfulBooker.postman_test_run.json --environment RestfulBooker.postman_environment.json --reporters junit'
+                        sh 'npm run RestfulBooker.postman_test_run.json --environment RestfulBooker.postman_environment.json --reporters junit'
                     }
                     post {always {junit '**/*xml'
                     }
