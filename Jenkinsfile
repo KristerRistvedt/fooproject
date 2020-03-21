@@ -23,10 +23,20 @@ pipeline
                     post {always {junit '**/TEST*.xml'
                         
                     }
-                        
+                          
                     }
                     
                 }
+                stage('newman') {
+            steps {
+                bat 'newman run RestfulBooker.postman_collection.json --environment RestfulBooker.postman_environment.json --reporters junit'
+            }
+            post {
+                always {
+                        junit '**/*xml'
+                    }
+                }
+        }
             
         }
         
