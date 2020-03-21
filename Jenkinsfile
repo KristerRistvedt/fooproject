@@ -29,7 +29,7 @@ pipeline
                 }
                 stage('newman') {
                     steps {
-                        bat 'npm run RestfulBooker.postman_collection.json --environment RestfulBooker.postman_environment.json --reporters junit'
+                        bat 'npm run RestfulBooker.postman_test_run.json --environment RestfulBooker.postman_environment.json --reporters junit'
                     }
                     post {always {junit '**/*xml'
                     }
