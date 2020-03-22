@@ -35,7 +35,11 @@ pipeline
                     }
                 }
             }
+                stage('If success then exit 0') {
+                    steps {
+                        sh 'exit 0'
+                    }
+                }
             
         }
-     script {sh "exit 0"}
     }
