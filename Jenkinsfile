@@ -27,14 +27,14 @@ pipeline
                     }
                     
                 }
-                /*stage('newman') {
+                stage('newman') {
                     steps {
-                        sh 'newman run Restful_Booker.postman_collection.json --environment Restful_Booker.postman_environment.json --reporters junit'
+                        sh 'newman run Restful_Booker.postman_collection.json --environment Restful_Booker.postman_environment.json --reporters junit --bail newman'
 
                     }
-                    post {always {junit '**//*xml'}
+                    post {always {junit '**/*xml'}
                 }
-            }*/
+            }
             
         }
     }
