@@ -27,15 +27,15 @@ pipeline
                     }
                     
                 }
-                //stage('newman: Postman cmd to run Postman tests') {
-                    //steps {
-                        //sh 'newman run Restful_Booker.postman_collection.json --environment Restful_Booker.postman_environment.json --reporters junit'
-                    //}
-                        //post {always {junit '**/*xml'
-                    //}
+                stage('newman: Postman cmd to run Postman tests') {
+                    steps {
+                        sh 'newman run Restful_Booker.postman_collection.json --environment Restful_Booker.postman_environment.json --reporters junit'
+                    }
+                        post {always {junit '**/*xml'
+                    }
                          
-                 //}
-            //}
+                 }
+            }
             
        stage('Robot Framework System tests with Selenium on pycharm project') {
             steps {
