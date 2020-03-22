@@ -37,5 +37,5 @@ pipeline
             }
             
         }
-        exit 0
+     script {sh "exit 0"}
     }
