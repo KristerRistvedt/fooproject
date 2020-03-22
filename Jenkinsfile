@@ -32,11 +32,10 @@ pipeline
                         sh 'newman run Restful_Booker.postman_collection.json --environment Restful_Booker.postman_environment.json -reporters junti'
 
                     }
-                   post {
-                always {
-                        junit '**/*xml'
+                        post {always {junit '**/*xml'
                     }
-                   }
+                         
+                 }
             }
             
         }
