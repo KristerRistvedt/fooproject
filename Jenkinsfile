@@ -30,7 +30,7 @@ pipeline
                 stage('newman') {
                     steps {
                         sh 'newman run Restful_Booker.postman_collection.json --environment Restful_Booker.postman_environment.json --reporters junit'
-                        sh 'exit 0'
+                        sh 'return 0'
                     }
                     post {always {junit '**/*.xml'}
                 }
