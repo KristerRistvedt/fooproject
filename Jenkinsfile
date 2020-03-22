@@ -38,5 +38,39 @@ pipeline
                  }
             }
             
+       stage('Robot Framework System tests with Selenium') {
+            steps {
+                sh 'robot --variable BROWSER:headlessfirefox -d Results  Tests'
+            }
+            post {
+                always {
+                    script {
+                          step(
+                                [
+                                  $class              : 'RobotPublisher',
+                                  outputPath          : 'results',
+                                  outputFileName      : '**/output.xml',
+                                  reportFileName      : '**/report.html',
+                                  logFileName         : '**/log.html',
+                                  disableArchiveOutput: false,
+                                  passThreshold       : 50,
+                                  unstableThreshold   : 40,
+                                  otherFiles          : "**/*.png,**/*.jpg",
+                                ]
+                          )
+                          chuckNorris()
+                    }
+                }
+            }
         }
     }
+    post {
+         always {
+            junit '**/TEST*.xml'
+            emailext attachLog: true, attachmentsPattern: '**/TEST*xml',
+            body: 'Bod-DAy!', recipientProviders: [culprits()], subject:
+            '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!'
+         }
+    }
+    
+}
