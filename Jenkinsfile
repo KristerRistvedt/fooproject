@@ -8,14 +8,14 @@ pipeline
                     }
                     
                 }
-                stage('Build') {
+                stage('Build Maven Project(compile)') {
                     steps {
                         sh "mvn compile"
                         
                     }
                     
                 }
-                stage('Test') {
+                stage('Test Maven Project') {
                     steps {
                         sh "mvn test"
                         
@@ -27,7 +27,7 @@ pipeline
                     }
                     
                 }
-                //stage('newman') {
+                //stage('newman: Postman cmd to run Postman tests') {
                     //steps {
                         //sh 'newman run Restful_Booker.postman_collection.json --environment Restful_Booker.postman_environment.json --reporters junit'
                     //}
@@ -37,7 +37,7 @@ pipeline
                  //}
             //}
             
-       stage('Robot Framework System tests with Selenium') {
+       stage('Robot Framework System tests with Selenium on pycharm project') {
             steps {
                 sh 'robot --variable BROWSER:headlessfirefox -d Results  Tests'
             }
