@@ -31,8 +31,7 @@ pipeline
                     steps {
                         sh 'newman run Restful_Booker.postman_collection.json --environment Restful_Booker.postman_environment.json --reporters junit'
                     }
-                    post {always {junit '**/*xml'
-                    }
+                    post {always {junit '**/*.xml'}
                 }
             }
                 stage('If success then exit 0') {
