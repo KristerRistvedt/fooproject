@@ -29,10 +29,12 @@ pipeline
                 }
                 stage('newman') {
                     steps {
+                        sh 'Set-ExecutionPolicy RemoteSigned'
+                        sh 'Y'
                         sh 'newman run Restful_Booker.postman_collection.json --environment Restful_Booker.postman_environment.json --reporters junit'
 
                     }
-                    post {always {junit '**/TEST*.xml'}
+                    post {always {junit '**/*xml'}
                 }
             }
             
