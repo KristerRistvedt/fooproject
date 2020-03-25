@@ -39,7 +39,7 @@ pipeline
             
        stage('Robot Framework System tests with Selenium on pycharm project') {
             steps {
-                sh 'robot --variable BROWSER:headlessfirefox -d Results  Tests' ./Tests/infotiv.robot
+                sh 'robot --variable BROWSER:headlessfirefox -d ./Tests/infotiv.robot'
             }
             post {
                 always {
